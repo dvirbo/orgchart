@@ -1,2 +1,2 @@
-# -orgchart
+# orgchart
 Organizational table with iterators
