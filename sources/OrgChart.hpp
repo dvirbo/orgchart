@@ -2,6 +2,7 @@
 #include <string>
 #include <iostream>
 #include <vector>
+#include <map>
 
 using namespace std;
 
@@ -14,13 +15,14 @@ namespace ariel
         struct Node
         {
             string _duty;
-            std::vector<Node *> _employees;
+            Node *manager;
+            std::vector<Node*> _employees;
         };
-        Node *boss;
-        int size = 0;
+        string _boss;
+        map<string, Node*> chart;
 
     public:
-        OrgChart() : boss(nullptr), size(0){};
+        OrgChart();
         OrgChart &add_root(string ceo);
         OrgChart &add_sub(string parent, string child);
         friend std::ostream &operator<<(std::ostream &out, const OrgChart &tree)
@@ -50,8 +52,8 @@ namespace ariel
                 return *this;
             }
 
-            bool operator==(const iterator &it){ return this->curr_node == it.curr_node;}
-            bool operator!=(const iterator &it){ return this->curr_node != it.curr_node;}
+            bool operator==(const iterator &it) { return this->curr_node == it.curr_node; }
+            bool operator!=(const iterator &it) { return this->curr_node != it.curr_node; }
         };
 
         iterator begin_level_order();
@@ -60,6 +62,8 @@ namespace ariel
         iterator end_reverse_order();
         iterator begin_preorder();
         iterator end_preorder();
+        iterator begin();  // need to use find() that return iterator..
+        iterator end();
     };
 
 }

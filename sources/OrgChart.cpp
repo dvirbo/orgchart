@@ -3,16 +3,31 @@
 namespace ariel
 {
 
-    OrgChart::OrgChart() {}
-
     OrgChart &OrgChart::add_root(string ceo)
-    {
-        return *this;
+    {// if the chart already has a root - replace the mame..
+        if (!chart.empty()) 
+        {
+            this->_boss = ceo;
+        }
+        this->_boss = ceo; // init the boss
+        Node *temp;
+        temp->manager = nullptr;
+        temp->_duty = ceo;
+        this->chart.insert(make_pair(ceo, temp));
     }
 
     OrgChart &OrgChart::add_sub(string parent, string child)
     {
-        return *this;
+        if (chart.empty())
+        {
+            throw invalid_argument("root don't exist");
+        }
+        Node *temp;
+        Node *p = this->chart.at(parent);
+        temp->manager = p;
+        temp->_duty = child;
+        this->chart.at(parent)->_employees.push_back(temp);
+        this->chart.insert(make_pair(child, temp));
     }
 
     OrgChart::iterator OrgChart::begin_level_order()
