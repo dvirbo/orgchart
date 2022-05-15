@@ -94,10 +94,17 @@ namespace ariel
         size_t ind = this->_level.size();
         return &this->_level[ind];
     }
-
-    /////////////////////////////////////////*************************************************
+    /*
+    this method recursivly iterate on the chart in preorder follows the Root Left Right policy
+    */
     void OrgChart::init_pre(Node &n)
     {
+        this->_pre.push_back(n._duty);
+        for (size_t ind = 0; ind < n._employees.size(); ind++)
+        {
+
+            init_pre(n._employees.at(ind));
+        }
     }
 
     string *OrgChart::begin_preorder()
@@ -110,7 +117,7 @@ namespace ariel
         {
             return this->_pre.data(); // the vector didn't change
         }
-        init_pre((this->_root));
+        init_pre(this->_root);
         this->pre_count = this->modeCount;
         return this->_pre.data();
     }
@@ -162,6 +169,15 @@ namespace ariel
         }
         size_t ind = this->_reverse.size();
         return &this->_reverse[ind];
+    }
+
+    string *OrgChart::begin()
+    {
+        return begin_level_order();
+    } // need to use find() that return string*..
+    string *OrgChart::end()
+    {
+        return end_level_order();
     }
 
 } // namespace ariel
