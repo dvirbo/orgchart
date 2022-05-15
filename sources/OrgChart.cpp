@@ -52,7 +52,7 @@ namespace ariel
         return *this;
     }
 
-    void OrgChart::init_level(Node n)
+    void OrgChart::init_level(Node &n)
     {
         queue<Node> remain;
         for (Node level : n._employees)
@@ -63,12 +63,9 @@ namespace ariel
 
         while (!remain.empty())
         {
-            // if (!remain.front()._employees.empty())
-
             for (Node level : remain.front()._employees)
             {
                 this->_level.push_back(level._duty);
-                //  cout << level._duty <<endl;
                 remain.push(level);
             }
             remain.pop();
@@ -97,7 +94,13 @@ namespace ariel
         size_t ind = this->_level.size();
         return &this->_level[ind];
     }
-    void OrgChart::init_pre() ///////**
+
+    /////////////////////////////////////////*************************************************
+    void OrgChart::init_pre(Node &n)
+    {
+    }
+
+    string *OrgChart::begin_preorder()
     {
         if (this->pre_count != this->modeCount)
         {
@@ -105,27 +108,38 @@ namespace ariel
         }
         else
         {
-            return; // the vector didn't change
+            return this->_pre.data(); // the vector didn't change
         }
-    }
-
-    string *OrgChart::begin_preorder()
-    {
-        init_pre();
+        init_pre((this->_root));
+        this->pre_count = this->modeCount;
         return this->_pre.data();
     }
 
     string *OrgChart::end_preorder()
     {
-        init_pre();
         if (this->_pre.empty())
         {
             throw "vector is empty";
         }
-        return &this->_pre.back();
+        size_t ind = this->_pre.size();
+        return &this->_pre[ind];
     }
 
-    void OrgChart::init_reverse() /////**
+    void OrgChart::init_reverse(Node &n)
+    {
+        for (auto it = n._employees.rbegin(); it != n._employees.rend(); it++)
+        {
+            this->_reverse.insert(this->_reverse.begin(), (*it)._duty);
+        }
+        size_t ind = n._employees.size() - 1;
+        for (auto it = n._employees.rbegin(); it != n._employees.rend(); it++)
+        {
+            init_reverse(n._employees[ind]);
+            ind--;
+        }
+    }
+
+    string *OrgChart::begin_reverse_order()
     {
         if (this->reverse_count != this->modeCount)
         {
@@ -133,24 +147,21 @@ namespace ariel
         }
         else
         {
-            return; // the vector didn't change
+            return this->_pre.data(); // the vector didn't change
         }
-    }
-
-    string *OrgChart::begin_reverse_order()
-    {
-        init_reverse();
+        this->_reverse.push_back(this->_root._duty);
+        init_reverse(this->_root);
         return this->_reverse.data();
     }
 
     string *OrgChart::end_reverse_order()
     {
-        init_reverse();
         if (this->_reverse.empty())
         {
             throw "vector is empty";
         }
-        return &this->_reverse.back();
+        size_t ind = this->_reverse.size();
+        return &this->_reverse[ind];
     }
 
 } // namespace ariel

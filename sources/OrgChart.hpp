@@ -44,9 +44,9 @@ namespace ariel
         string *begin(); // need to use find() that return string*..
         string *end();
         bool find_child(Node& n,string& parent, string& chid);
-        void init_level(Node n);
-        void init_reverse();
-        void init_pre();
+        void init_level(Node& n);
+        void init_reverse(Node& n);
+        void init_pre(Node& n);
     };
 
 }
