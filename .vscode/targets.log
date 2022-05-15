@@ -1,4 +1,6 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+make: *** No rule to make target 'all'.  Stop.
+
 # GNU Make 4.2.1
 # Built for x86_64-pc-linux-gnu
 # Copyright (C) 1988-2016 Free Software Foundation, Inc.
@@ -6,7 +8,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sun May 15 18:37:15 2022
+# Make data base, printed on Sun May 15 21:58:16 2022
 
 # Variables
 
@@ -57,7 +59,7 @@ PATH = /home/dvirb/.vscode-server/bin/da15b6fd3ef856477bf6f4fb29ba1b7af717770d/b
 # environment
 VSCODE_LOG_STACK = false
 # environment
-VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-206a7feb-069b-4a46-a74a-c20efb540b8f.sock
+VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-8de33221-2537-43cd-bbc8-7c9fa6bdeb3f.sock
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # automatic
@@ -123,6 +125,7 @@ MFLAGS = -pqrR
 # automatic
 +F = $(notdir $+)
 # environment
+ 
 VSCODE_HANDLES_SIGPIPE = true
 # default
 MAKEFILES := 
@@ -165,10 +168,10 @@ TIDY_FLAGS = -extra-arg=-std=$(CXXVERSION) -checks=bugprone-*,clang-analyzer-*,c
 
 # Directories
 
-# . (device 2, inode 101049516639139274): 16 files, no impossibilities.
-# sources (device 2, inode 8444249301411665): 5 files, no impossibilities.
+# . (device 2, inode 101049516639139274): 14 files, no impossibilities.
+# sources (device 2, inode 8444249301411665): 6 files, no impossibilities.
 
-# 21 files, no impossibilities in 2 directories.
+# 20 files, no impossibilities in 2 directories.
 
 # Implicit Rules
 
@@ -185,13 +188,19 @@ objects/%.o: sources/%.cpp sources/OrgChart.hpp
 # Files
 
 # Not a target:
+objects/Test.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
 all:
 #  Command line target.
 #  Implicit rule search has been done.
 #  File does not exist.
 #  File has not been updated.
 
-demo: Demo.o objects/OrgChart.o
+demo: Demo.o objects/OrgChart.o objects/Test.o
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -203,6 +212,7 @@ Makefile:
 #  Implicit rule search has been done.
 #  Last modified 2022-05-10 11:25:48.8737295
 #  File has been updated.
+ 
 #  Successfully updated.
 
 # Not a target:
@@ -211,7 +221,7 @@ Test.o:
 #  Modification time never checked.
 #  File has not been updated.
 
-test: TestCounter.o Test.o objects/OrgChart.o
+test: TestCounter.o Test.o objects/OrgChart.o objects/Test.o
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -273,21 +283,19 @@ valgrind: demo test
 	valgrind --tool=memcheck $(VALGRIND_FLAGS) ./test 2>&1 | { egrep "lost| at " || true; }
 
 # files hash-table stats:
-# Load=14/1024=1%, Rehash=0, Collisions=2/33=6%
+# Load=15/1024=1%, Rehash=0, Collisions=2/36=6%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 36 / storage = 336 B / avg = 9 B
-# current buf: size = 8162 B / used = 336 B / count = 36 / avg = 9 B
+# strcache buffers: 1 (0) / strings = 38 / storage = 360 B / avg = 9 B
+# current buf: size = 8162 B / used = 360 B / count = 38 / avg = 9 B
 
-# strcache performance: lookups = 57 / hit rate = 36%
+# strcache performance: lookups = 58 / hit rate = 34%
 # hash-table stats:
-# Load=36/8192=0%, Rehash=0, Collisions=2/57=4%
-# Finished Make data base on Sun May 15 18:37:15 2022
+# Load=38/8192=0%, Rehash=0, Collisions=2/58=3%
+# Finished Make data base on Sun May 15 21:58:16 2022
 
  
-make: *** No rule to make target 'all'.  Stop.
-

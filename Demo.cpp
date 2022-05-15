@@ -29,7 +29,7 @@ int main()
        |--------|--------|
        CTO      CFO      COO
        |                 |
-       VP_SW             VP_BI
+       VP_SW             VP_BIDemo.cpp
  */
 
   for (auto it = organization.begin_level_order(); it != organization.end_level_order(); ++it)
