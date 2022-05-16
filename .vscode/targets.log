@@ -1,6 +1,4 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
-make: *** No rule to make target 'all'.  Stop.
-
 # GNU Make 4.2.1
 # Built for x86_64-pc-linux-gnu
 # Copyright (C) 1988-2016 Free Software Foundation, Inc.
@@ -8,7 +6,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sun May 15 21:58:16 2022
+# Make data base, printed on Mon May 16 20:07:43 2022
 
 # Variables
 
@@ -59,7 +57,7 @@ PATH = /home/dvirb/.vscode-server/bin/da15b6fd3ef856477bf6f4fb29ba1b7af717770d/b
 # environment
 VSCODE_LOG_STACK = false
 # environment
-VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-8de33221-2537-43cd-bbc8-7c9fa6bdeb3f.sock
+VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-12969f35-39c2-48f5-a439-04e378f8ea52.sock
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # automatic
@@ -79,7 +77,7 @@ HOME = /home/dvirb
 # environment
 LOGNAME = dvirb
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # makefile (from 'Makefile', line 12)
 HEADERS = $(wildcard $(SOURCE_PATH)/*.hpp)
 # environment
@@ -125,7 +123,6 @@ MFLAGS = -pqrR
 # automatic
 +F = $(notdir $+)
 # environment
- 
 VSCODE_HANDLES_SIGPIPE = true
 # default
 MAKEFILES := 
@@ -160,7 +157,7 @@ WSL_DISTRO_NAME = Ubuntu-20.04
 # makefile (from 'Makefile', line 8)
 TIDY_FLAGS = -extra-arg=-std=$(CXXVERSION) -checks=bugprone-*,clang-analyzer-*,cppcoreguidelines-*,performance-*,portability-*,readability-*,-cppcoreguidelines-pro-bounds-pointer-arithmetic,-cppcoreguidelines-owning-memory --warnings-as-errors=*
 # variable set hash-table stats:
-# Load=73/1024=7%, Rehash=0, Collisions=4/110=4%
+# Load=73/1024=7%, Rehash=0, Collisions=4/113=4%
 
 # Pattern-specific Variable Values
 
@@ -168,30 +165,24 @@ TIDY_FLAGS = -extra-arg=-std=$(CXXVERSION) -checks=bugprone-*,clang-analyzer-*,c
 
 # Directories
 
-# . (device 2, inode 101049516639139274): 14 files, no impossibilities.
-# sources (device 2, inode 8444249301411665): 6 files, no impossibilities.
+# . (device 2, inode 101049516639139274): 16 files, no impossibilities.
+# sources (device 2, inode 8444249301411665): 5 files, no impossibilities.
 
-# 20 files, no impossibilities in 2 directories.
+# 21 files, no impossibilities in 2 directories.
 
 # Implicit Rules
 
 %.o: %.cpp sources/OrgChart.hpp
-#  recipe to execute (from 'Makefile', line 32):
+#  recipe to execute (from 'Makefile', line 35):
 	$(CXX) $(CXXFLAGS) --compile $< -o $@
 
 objects/%.o: sources/%.cpp sources/OrgChart.hpp
-#  recipe to execute (from 'Makefile', line 35):
+#  recipe to execute (from 'Makefile', line 38):
 	$(CXX) $(CXXFLAGS) --compile $< -o $@
 
 # 2 implicit rules, 0 (0.0%) terminal.
 
 # Files
-
-# Not a target:
-objects/Test.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
 
 # Not a target:
 all:
@@ -200,7 +191,13 @@ all:
 #  File does not exist.
 #  File has not been updated.
 
-demo: Demo.o objects/OrgChart.o objects/Test.o
+# Not a target:
+Demo.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+demo: Demo.o objects/OrgChart.o
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -210,9 +207,8 @@ demo: Demo.o objects/OrgChart.o objects/Test.o
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-05-10 11:25:48.8737295
+#  Last modified 2022-05-16 20:06:41.4299351
 #  File has been updated.
- 
 #  Successfully updated.
 
 # Not a target:
@@ -221,11 +217,11 @@ Test.o:
 #  Modification time never checked.
 #  File has not been updated.
 
-test: TestCounter.o Test.o objects/OrgChart.o objects/Test.o
+test: TestCounter.o Test.o objects/OrgChart.o
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 22):
+#  recipe to execute (from 'Makefile', line 25):
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
 # Not a target:
@@ -246,7 +242,7 @@ objects/OrgChart.o:
 #  Modification time never checked.
 #  File has not been updated.
 
-run: demo
+run: main
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -257,19 +253,26 @@ clean:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 38):
-	rm -f $(OBJECTS) *.o test* demo*
+#  recipe to execute (from 'Makefile', line 41):
+	rm -f $(OBJECTS) *.o test* demo* main
 	rm -f StudentTest*.cpp
 
 tidy:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 25):
+#  recipe to execute (from 'Makefile', line 28):
 	clang-tidy $(HEADERS) $(TIDY_FLAGS) --
 
+main: main.o objects/OrgChart.o
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 22):
+	$(CXX) $(CXXFLAGS) $^ -o $@
+
 # Not a target:
-Demo.o:
+main.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -278,24 +281,27 @@ valgrind: demo test
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 28):
+#  recipe to execute (from 'Makefile', line 31):
 	valgrind --tool=memcheck $(VALGRIND_FLAGS) ./demo 2>&1 | { egrep "lost| at " || true; }
 	valgrind --tool=memcheck $(VALGRIND_FLAGS) ./test 2>&1 | { egrep "lost| at " || true; }
 
 # files hash-table stats:
-# Load=15/1024=1%, Rehash=0, Collisions=2/36=6%
+# Load=16/1024=2%, Rehash=0, Collisions=2/37=5%
 # VPATH Search Paths
+
+ 
+make: *** No rule to make target 'all'.  Stop.
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 38 / storage = 360 B / avg = 9 B
-# current buf: size = 8162 B / used = 360 B / count = 38 / avg = 9 B
+# strcache buffers: 1 (0) / strings = 40 / storage = 366 B / avg = 9 B
+# current buf: size = 8162 B / used = 366 B / count = 40 / avg = 9 B
 
-# strcache performance: lookups = 58 / hit rate = 34%
+# strcache performance: lookups = 61 / hit rate = 34%
 # hash-table stats:
-# Load=38/8192=0%, Rehash=0, Collisions=2/58=3%
-# Finished Make data base on Sun May 15 21:58:16 2022
+# Load=40/8192=0%, Rehash=0, Collisions=2/61=3%
+# Finished Make data base on Mon May 16 20:07:43 2022
 
  

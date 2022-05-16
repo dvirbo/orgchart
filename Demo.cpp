@@ -59,6 +59,7 @@ int main()
   } // prints: CEO CTO CFO COO VP_SW VP_BI
   cout << endl;
 
+
   // // demonstrate the arrow operator:
   for (auto it = organization.begin_level_order(); it != organization.end_level_order(); ++it)
   {

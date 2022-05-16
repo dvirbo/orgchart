@@ -53,9 +53,4 @@
 * יש לכתוב תוכנית ראשית יצירתית כלשהי המדגימה את האיטרטורים והאופרטורים שכתבתם.
 * בתוכנית הראשית, להדגים את האיטרטורים בעזרת אלגוריתמים מהספריה התקנית (שנלמד בשבוע 11). האלגוריתמים לבחירתכם - תהיו יצירתיים.
 
-bibliography:
-
-Writing an ITERATOR in C++:
-
-https://www.youtube.com/watch?v=F9eDv-YIOQ0&list=PLlrATfBNZ98dudnM48yfGUldqGD0S4FFb&index=94
 </div>

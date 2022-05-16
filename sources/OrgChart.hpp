@@ -12,6 +12,7 @@ namespace ariel
     {
         string _duty;
         std::vector<Node> _employees;
+        int _dist;
     };
 
     class OrgChart
@@ -25,15 +26,14 @@ namespace ariel
         std::vector<string> _level;
         std::vector<string> _reverse;
         std::vector<string> _pre;
+        std::vector<Node> _print;
+
 
     public:
         OrgChart();
         OrgChart &add_root(string ceo);
         OrgChart &add_sub(string parent, string child);
-        friend std::ostream &operator<<(std::ostream &out, const OrgChart &tree)
-        {
-            return out;
-        }
+        friend std::ostream &operator<<(std::ostream &out, OrgChart &tree);
 
         string *begin_level_order();
         string *end_level_order();
@@ -43,10 +43,13 @@ namespace ariel
         string *end_preorder();
         string *begin(); // need to use find() that return string*..
         string *end();
-        bool find_child(Node& n,string& parent, string& chid);
-        void init_level(Node& n);
-        void init_reverse(Node& n);
-        void init_pre(Node& n);
+        Node* begin_print();
+        Node* end_print();
+        bool find_child(Node &n, string &parent, string &chid);
+        void init_level(Node &n);
+        void init_reverse(Node &n);
+        void init_pre(Node &n);
+        void init_print(Node &n);
     };
 
 }

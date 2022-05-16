@@ -5,14 +5,20 @@ namespace ariel
 {
     OrgChart::OrgChart(/* args */)
     {
+        this->modeCount = 0;
+        this->level_count = -1;
+        this->reverse_count = -1;
+        this->pre_count = -1;
     }
 
     OrgChart &OrgChart::add_root(string ceo)
     {
         this->_root._duty = ceo; // init the root
         this->modeCount++;
+        this->_root._dist = 0;
         return *this;
     }
+
     /*
     this recursive method help us to find the father of the node that we want to add
     */
@@ -22,6 +28,7 @@ namespace ariel
         if (n._duty.compare(parent) == 0)
         { // equals
             nchild._duty = child;
+            nchild._dist = n._dist + 1; // inc the dist from the root
             n._employees.push_back(nchild);
             return true;
         }
@@ -35,6 +42,9 @@ namespace ariel
         return false;
     }
 
+    /*
+    this method add node in the chart
+    */
     OrgChart &OrgChart::add_sub(string parent, string child)
     {
         if (this->_root._duty.empty())
@@ -94,6 +104,7 @@ namespace ariel
         size_t ind = this->_level.size();
         return &this->_level[ind];
     }
+
     /*
     this method recursivly iterate on the chart in preorder follows the Root Left Right policy
     */
@@ -178,6 +189,51 @@ namespace ariel
     string *OrgChart::end()
     {
         return end_level_order();
+    }
+
+    void OrgChart::init_print(Node &n)
+    {
+        queue<Node> remain;
+        for (Node level : n._employees)
+        {
+            this->_print.push_back(level);
+            remain.push(level);
+        }
+
+        while (!remain.empty())
+        {
+            for (Node level : remain.front()._employees)
+            {
+                this->_print.push_back(level);
+                remain.push(level);
+            }
+            remain.pop();
+        }
+    }
+
+    Node *OrgChart::begin_print()
+    {
+        this->_print.clear();
+        this->_print.push_back(this->_root); // push the root
+        init_print(_root);
+        return this->_print.data();
+    }
+
+    Node *OrgChart::end_print()
+    {
+        size_t ind = this->_print.size();
+        return &this->_print[ind];
+    }
+
+    std::ostream &operator<<(std::ostream &out, OrgChart &tree)
+    {
+
+        for (auto ind = tree.begin_print(); ind != tree.end_print(); ind++)
+        {
+            out << (*ind)._duty << " in level: " <<  (*ind)._dist;
+            cout << endl;
+        }
+        return out;
     }
 
 } // namespace ariel
