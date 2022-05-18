@@ -34,8 +34,17 @@ int main()
     for (auto element : chart)
     { // this should work like level order
         cout << element << " ";
-    } 
+    }
+
+    chart.add_sub("B", "Y");
+
+    
+    for (auto element : chart)
+    { // this should work like level order
+        cout << element << " ";
+    }
+
     cout << endl;
 }
 
-//clang++-9 main.cpp -o main
+// clang++-9 main.cpp -o main

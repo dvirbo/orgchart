@@ -81,7 +81,10 @@ namespace ariel
             remain.pop();
         }
     }
-
+    /*
+    this method init the iterator that iterate in "level order"
+    return pointer to the first element ("string") in the vector _level
+    */
     string *OrgChart::begin_level_order()
     {
         if (this->level_count != this->modeCount)
@@ -117,7 +120,10 @@ namespace ariel
             init_pre(n._employees.at(ind));
         }
     }
-
+    /*
+    this method init the iterator that iterate in "preorder"
+    return pointer to the first element ("string") in the vector _pre
+    */
     string *OrgChart::begin_preorder()
     {
         if (this->pre_count != this->modeCount)
@@ -142,21 +148,26 @@ namespace ariel
         size_t ind = this->_pre.size();
         return &this->_pre[ind];
     }
-
+    /*
+     after we insert the root
+    */
     void OrgChart::init_reverse(Node &n)
     {
-        for (auto it = n._employees.rbegin(); it != n._employees.rend(); it++)
+        for (auto it = n._employees.rbegin(); it != n._employees.rend(); it++) //insert (to begin()) the node child in reverse order
         {
             this->_reverse.insert(this->_reverse.begin(), (*it)._duty);
         }
         size_t ind = n._employees.size() - 1;
-        for (auto it = n._employees.rbegin(); it != n._employees.rend(); it++)
+        for (auto it = n._employees.rbegin(); it != n._employees.rend(); it++) // recursive call on every child in reverse order
         {
             init_reverse(n._employees[ind]);
             ind--;
         }
     }
-
+    /*
+    this method init the iterator that iterate in "reverse order"
+    return pointer to the first element ("string") in the vector _reverse
+    */
     string *OrgChart::begin_reverse_order()
     {
         if (this->reverse_count != this->modeCount)
@@ -172,7 +183,7 @@ namespace ariel
         return this->_reverse.data();
     }
 
-    string *OrgChart::end_reverse_order()
+    string *OrgChart::reverse_order()
     {
         if (this->_reverse.empty())
         {
@@ -230,7 +241,7 @@ namespace ariel
 
         for (auto ind = tree.begin_print(); ind != tree.end_print(); ind++)
         {
-            out << (*ind)._duty << " in level: " <<  (*ind)._dist;
+            out << (*ind)._duty << " in level: " << (*ind)._dist;
             cout << endl;
         }
         return out;

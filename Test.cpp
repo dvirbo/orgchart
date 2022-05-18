@@ -82,7 +82,7 @@ TEST_CASE("reverse_order")
     CHECK_NOTHROW(organization.add_sub("D", "E"));
     CHECK_NOTHROW(organization.add_sub("D", "F"));
     string check;
-    for (auto it = organization.begin_reverse_order(); it != organization.end_reverse_order(); it++)
+    for (auto it = organization.begin_reverse_order(); it != organization.reverse_order(); it++)
     {
         check += (*it);
         check += " ";

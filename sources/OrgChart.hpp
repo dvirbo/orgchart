@@ -19,10 +19,10 @@ namespace ariel
     {
     private:
         Node _root;
-        int modeCount = 0;
-        int level_count = -1;
-        int reverse_count = -1;
-        int pre_count = -1;
+        int modeCount; // count every change in the chart
+        int level_count; // 
+        int reverse_count;
+        int pre_count;
         std::vector<string> _level;
         std::vector<string> _reverse;
         std::vector<string> _pre;
@@ -38,10 +38,10 @@ namespace ariel
         string *begin_level_order();
         string *end_level_order();
         string *begin_reverse_order();
-        string *end_reverse_order();
+        string *reverse_order();
         string *begin_preorder();
         string *end_preorder();
-        string *begin(); // need to use find() that return string*..
+        string *begin(); 
         string *end();
         Node* begin_print();
         Node* end_print();

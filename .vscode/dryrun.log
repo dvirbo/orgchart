@@ -1,4 +1,4 @@
-make --dry-run --keep-going --print-directory
+make --dry-run --always-make --keep-going --print-directory
 make: Entering directory '/home/dvirb/orgchart'
 clang++-9  -std=c++2a -Werror -Wsign-conversion -Isources --compile main.cpp -o main.o
 clang++-9  -std=c++2a -Werror -Wsign-conversion -Isources --compile sources/OrgChart.cpp -o objects/OrgChart.o
